@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Automation</title>
+</head>
+<body>
+    <h1>Workflow Automation</h1>
+    <div>
+        <h2>Generate Commit Message</h2>
+        <form id="commitForm">
+            <label for="repo_path">Repository Path:</label>
+            <input type="text" id="repo_path" name="repo_path">
+            <button type="submit">Generate</button>
+        </form>
+        <div id="commitMessage"></div>
+    </div>
+    <div>
+        <h2>Summarize Pull Request</h2>
+        <form id="prForm">
+            <label for="repo_owner">Repository Owner:</label>
+            <input type="text" id="repo_owner" name="repo_owner">
+            <label for="repo_name">Repository Name:</label>
+            <input type="text" id="repo_name" name="repo_name">
+            <label for="pr_number">PR Number:</label>
+            <input type="text" id="pr_number" name="pr_number">
+            <label for="github_token">GitHub Token:</label>
+            <input type="text" id="github_token" name="github_token">
+            <button type="submit">Summarize</button>
+        </form>
+        <div id="prSummary"></div>
+    </div>
+    <div>
+        <h2>Update Version</h2>
+        <form id="versionForm">
+            <label for="repo_path_version">Repository Path:</label>
+            <input type="text" id="repo_path_version" name="repo_path_version">
+            <button type="submit">Update Version</button>
+        </form>
+        <div id="newVersion"></div>
+    </div>
+
+    <script>
+        document.getElementById('commitForm').onsubmit = function(e) {
+            e.preventDefault();
+            fetch('/generate_commit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+               
